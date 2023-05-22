@@ -13,7 +13,7 @@ class ProjectPerfTest(HttpUser):
 
     @task
     def book(self):
-        response = self.client.post(
+        response = self.client.get(
             '/book/Spring Festival/Iron Temple')
 
     @task
