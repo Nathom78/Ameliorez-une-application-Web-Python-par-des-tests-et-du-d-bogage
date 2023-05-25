@@ -6,7 +6,7 @@
 # Expected:
 # They should not be able to redeem more points than available; this should be done within the UI.
 # The redeemed points should be correctly deducted from the club"s total.
-import pytest
+
 import server
 
 
