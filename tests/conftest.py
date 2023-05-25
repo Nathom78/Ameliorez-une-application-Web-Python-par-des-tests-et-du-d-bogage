@@ -5,7 +5,7 @@ import server
 
 @pytest.fixture
 def client():
-    """this is the fixture that sets a client for the tests"""
+    """this is the fixture that sets a client for the tests."""
     server.app.testing = True
     with server.app.test_client() as client:
         yield client
@@ -20,3 +20,20 @@ def clubs_fixture():
                        ]
              }
     return clubs
+
+
+@pytest.fixture
+def competitions_fixture():
+    competitions = {'competitions': [
+        {
+            "name": "Test compet A",
+            "date": "2023-05-25 10:00:00",
+            "numberOfPlaces": "25"
+        },
+        {
+            "name": "Test compet B",
+            "date": "2022-10-22 13:30:00",
+            "numberOfPlaces": "13"
+        }
+    ]}
+    return competitions

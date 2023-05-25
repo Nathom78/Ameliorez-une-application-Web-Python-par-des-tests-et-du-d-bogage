@@ -32,12 +32,9 @@ def index():
 @app.route("/showSummary", methods=["POST"])
 def showSummary():
     """This is the endpoint for the summary page of the app, where you can choose a competition to book places."""
-    try:
-        club = [club for club in clubs if club["email"] == request.form["email"]][0]
-        return render_template("welcome.html", club=club, competitions=competitions)
-    except IndexError:
-        flash("unknown email, try again")
-        return render_template("index.html")
+    club = [club for club in clubs if club['email']
+            == request.form['email']][0]
+    return render_template('welcome.html', club=club, competitions=competitions)
 
 
 @app.route("/book/<competition>/<club>")
@@ -63,9 +60,16 @@ def purchasePlaces():
     """
     competition = [c for c in competitions if c["name"] == request.form["competition"]][0]
     club = [c for c in clubs if c["name"] == request.form["club"]][0]
+    print('club: ')
+    print(club)
     placesRequired = int(request.form["places"])
-    competition["numberOfPlaces"] = int(competition["numberOfPlaces"]) - placesRequired
-    flash("Great-booking complete!")
+    if int(club["points"]) - placesRequired >= 0:
+        competition["numberOfPlaces"] = int(competition["numberOfPlaces"]) - placesRequired
+        club["points"] = int(club["points"]) - placesRequired
+        print(club)
+        flash("Great-booking complete!")
+    else:
+        flash("sorry, you do not have enough points")
     return render_template("welcome.html", club=club, competitions=competitions)
 
 
