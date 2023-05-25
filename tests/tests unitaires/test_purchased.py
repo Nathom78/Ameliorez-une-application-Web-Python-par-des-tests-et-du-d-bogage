@@ -56,7 +56,7 @@ class TestPurchase:
                                                               mocker):
         """
         This test creates a client, trie to book the club amount
-        of points to a competition and verifies the status_code, and no error message
+        of points to a competition and verifies the status_code, and no error message.
         """
         mocker.patch.object(server, "clubs", clubs_fixture["clubs"])
         mocker.patch.object(server, "competitions", competitions_fixture["competitions"])
