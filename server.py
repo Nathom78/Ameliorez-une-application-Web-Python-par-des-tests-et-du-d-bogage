@@ -1,5 +1,6 @@
 import json
 from flask import Flask, render_template, request, redirect, flash, url_for
+from markupsafe import escape
 
 
 def loadClubs():
@@ -60,8 +61,11 @@ def purchasePlaces():
     competition = [c for c in competitions if c["name"] == request.form["competition"]][0]
     club = [c for c in clubs if c["name"] == request.form["club"]][0]
     placesRequired = int(request.form["places"])
-    competition["numberOfPlaces"] = int(competition["numberOfPlaces"]) - placesRequired
-    flash("Great-booking complete!")
+    if placesRequired <= 12:
+        competition["numberOfPlaces"] = int(competition["numberOfPlaces"]) - placesRequired
+        flash("Great-booking complete!")
+    else:
+        flash("Sorry, you cannot book more than 12 places.", category='error')
     return render_template("welcome.html", club=club, competitions=competitions)
 
 
