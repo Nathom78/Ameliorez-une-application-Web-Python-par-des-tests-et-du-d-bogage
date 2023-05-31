@@ -1,5 +1,6 @@
 import json
 from flask import Flask, render_template, request, redirect, flash, url_for
+from datetime import datetime
 
 
 def loadClubs():
@@ -16,11 +17,11 @@ def loadCompetitions():
         return listOfCompetitions
 
 
-competitions = loadCompetitions()
-clubs = loadClubs()
-
 app = Flask(__name__)
 app.config.from_object('config')
+
+competitions = loadCompetitions()
+clubs = loadClubs()
 
 
 @app.route("/")
@@ -32,11 +33,11 @@ def index():
 @app.route("/showSummary", methods=["POST"])
 def showSummary():
     """This is the endpoint for the summary page of the app, where you can choose a competition to book places."""
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
+    club = [club for club in clubs if club["email"] == request.form["email"]][0]
     return render_template('welcome.html', club=club, competitions=competitions)
 
 
-@app.route("/book/<competition>/<club>")
+@app.route("/book/<competition>/<club>", methods=["POST", "GET"])
 def book(competition, club):
     """
     This is the enpoint for the page of the app where you can book a certain amount of places
@@ -44,8 +45,14 @@ def book(competition, club):
     """
     foundClub = [c for c in clubs if c["name"] == club][0]
     foundCompetition = [c for c in competitions if c["name"] == competition][0]
+    dateNow = datetime.now().replace(microsecond=0)
+    competitionDate = datetime.strptime(foundCompetition["date"], '%Y-%m-%d %H:%M:%S')
     if foundClub and foundCompetition:
-        return render_template("booking.html", club=foundClub, competition=foundCompetition)
+        if dateNow <= competitionDate:
+            return render_template("booking.html", club=foundClub, competition=foundCompetition)
+        else:
+            flash("sorry, this competition already took place")
+            return render_template('welcome.html', club=foundClub, competitions=competitions)
     else:
         flash("Something went wrong-please try again")
         return render_template("welcome.html", club=club, competitions=competitions)
