@@ -1,5 +1,4 @@
 import pytest
-
 import server
 
 
@@ -9,6 +8,8 @@ def client():
     server.app.testing = True
     with server.app.test_client() as client:
         yield client
+
+
 
 
 @pytest.fixture
