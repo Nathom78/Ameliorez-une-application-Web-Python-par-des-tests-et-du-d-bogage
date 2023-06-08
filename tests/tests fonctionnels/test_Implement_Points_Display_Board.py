@@ -63,5 +63,4 @@ class TestBoard:
         driver.find_element(By.ID, "button_board").click()
 
         assert "Points board" in driver.title
-
-        # self.driver.close()
+        driver.close()
