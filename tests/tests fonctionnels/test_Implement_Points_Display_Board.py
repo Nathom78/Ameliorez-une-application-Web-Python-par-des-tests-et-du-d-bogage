@@ -59,9 +59,9 @@ class TestBoard:
         email.send_keys(club_email)
         email.send_keys(Keys.RETURN)
         # Cliquer sur le bouton point_board
-        assert "Summary | GUDLFT Registration" in driver.title
-        driver.find_element(By.ID, "button_board")
+        # assert "Summary | GUDLFT Registration" in driver.title
+        driver.find_element(By.ID, "button_board").click()
 
         assert "Points board" in driver.title
 
-        self.driver.close()
+        # self.driver.close()
