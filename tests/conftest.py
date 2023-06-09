@@ -1,10 +1,11 @@
 import pytest
+
 import server
 
 
 @pytest.fixture
 def client():
-    """this is the fixture that sets a client for the tests."""
+    """This is the fixture that sets a client for the tests."""
     server.app.testing = True
     with server.app.test_client() as client:
         yield client
@@ -28,7 +29,7 @@ def competitions_fixture():
     competitions = {'competitions': [
         {
             "name": "Test compet A",
-            "date": "2023-05-25 10:00:00",
+            "date": "2023-07-25 10:00:00",
             "numberOfPlaces": "25"
         },
         {

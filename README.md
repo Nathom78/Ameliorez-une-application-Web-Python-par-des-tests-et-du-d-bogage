@@ -48,12 +48,10 @@ vous dever cloner mon **fork**, afin de pouvoir rester synchronisé avec mon Git
 cd myproject
 </code></pre>
 
-3. Puis créer un environnement virtuel, et activer le:<code><pre>
-       > python -m venv .env</code></pre>
+3. Puis créer un environnement virtuel, et activer le:<pre><code>python -m venv .env</code></pre>
 
-    * Sous Linux/macOS :<code><pre>$ . .venv/bin/activate</code></pre>
-    * Sous Windows :
-   <code><pre>> .venv\Scripts\activate</code></pre>
+    * Sous Linux/macOS :<pre><code>.env/bin/activate</code></pre>
+    * Sous Windows :<pre><code>.env\Scripts\activate </code></pre>
 
 4. Afin de cloner, entrez : <pre><code>git clone https://github.com/Nathom78/Ameliorez-une-application-Web-Python-par-des-tests-et-du-d-bogage.git <br></code></pre>
 Ou utiliser [ce repository](https://github.com/Nathom78/Ameliorez-une-application-Web-Python-par-des-tests-et-du-d-bogage.git) en téléchargeant le zip.<br>
@@ -67,9 +65,7 @@ Ou utiliser [ce repository](https://github.com/Nathom78/Ameliorez-une-applicatio
 Pour faire fonctionner l'application, vous aurez besoin de démarrer Flask, pour cela :
 1. Ouvrez un terminal **externe** à votre IDE *(integrated development environment)*
 dans le dossier du projet.
-2. Démarrez avec la commande suivante :<code><pre>
-    flask --app server run
-</code></pre>
+2. Démarrez avec la commande suivante :<pre><code>flask --app server run</code></pre>
 3. Un fichier _config.py_ contient les éléments afin de démarrer l'application Flask, pour l'instant en mode "development".
 
 #
