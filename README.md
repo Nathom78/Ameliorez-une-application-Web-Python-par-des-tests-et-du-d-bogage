@@ -60,7 +60,7 @@ Ou utiliser [ce repository](https://github.com/Nathom78/Ameliorez-une-applicatio
 
 5. Installez les packages python prérequis, au bon fonctionnement du projet avec la commande suivante :
    - Version "normale" : `pip install -r requirements.txt`
-   - Version "testing" : `pip install -r requirements-testing.txt`
+   - Version "testing" : `pip install -r requirements_for_testing.txt`
 
 #
 ## *Démarrage de l'application :*
