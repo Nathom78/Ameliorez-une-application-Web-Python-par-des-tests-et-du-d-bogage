@@ -101,25 +101,7 @@ class TestPurchase:
 
         assert response.status_code == 200
         assert b"sorry, this competition already took place" not in response.data
-# Given:
-#
-# A club secretary wishes to redeem points for a place in a competition
-#
-# When:
-#
-# The number of places is confirmed
-#
-# Then:
-#
-# The amount of club points available remain the same
-# Expected:
-#
-# The amount of points used should be deducted from the club"s balance.
 
-import server
-
-
-class Testpurchase:
     def test_points_should_be_updated(self, client, clubs_fixture, competitions_fixture, mocker):
         """
         This test creates a client, book places to a competition and verifies the status_code,
