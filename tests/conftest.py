@@ -24,8 +24,6 @@ def clubs_fixture():
                        ]
              }
     return clubs
-<<<<<<< HEAD
-=======
 
 
 @pytest.fixture
@@ -43,4 +41,3 @@ def competitions_fixture():
         }
     ]}
     return competitions
->>>>>>> origin/BUG/Clubs_should_not_be_able_to_use_more_than_their_points_allowed_#2
