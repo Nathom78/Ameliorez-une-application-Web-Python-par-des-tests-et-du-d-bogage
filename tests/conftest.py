@@ -61,3 +61,24 @@ def past_competitions_fixture():
         ]
     }
     return competitions
+
+
+@pytest.fixture(scope="session")
+def flask_port():
+    ## Ask OS for a free port.
+    #
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(("", 0))
+        addr = s.getsockname()
+        port = addr[1]
+        return port
+
+
+#
+@pytest.fixture(autouse=True)
+def LiveServerTestCase(flask_port):
+    live_server = subprocess.Popen(['flask', '--app', 'server', 'run', '--port', str(flask_port)])
+    try:
+        yield live_server
+    finally:
+        live_server.terminate()
