@@ -89,6 +89,8 @@ Cette commande exécutera tous les tests qui se trouvent dans le répertoire tes
 choisir vos tests en ajoutant directement le nom du fichier test ciblé, exemple :
 - `pytest .\tests\tests unitaires\test_login.py`
 
+Pour les tests fonctionnels une capture d'écran est créé dans le repertoire _Screenshots_.
+
 #### Locust :
 
 Concernant Locust, vous pouvez consulter le rapport généré dans le dossier **locust_report**, 

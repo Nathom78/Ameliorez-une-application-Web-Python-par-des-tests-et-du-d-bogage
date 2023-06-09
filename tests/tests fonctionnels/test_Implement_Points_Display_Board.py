@@ -6,61 +6,40 @@
 #
 # They should be able to see the list of clubs and their associated current points balance.
 
-import server
+from server import clubs
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
-HOSTNAME = "http://127.0.0.1:+5000/"
-
-
-def live_server():
-    # env = os.environ.copy()
-    # env["FLASK_APP"] = "server"
-    live_server = subprocess.Popen(['flask', '--app', 'server', 'run', '--port', str(4099)])
-    try:
-        yield live_server
-    finally:
-        live_server.terminate()
-
 
 class TestBoard:
-
-    def setUp(self):
-        # self.driver = webdriver.Chrome()
-        # self.driver = webdriver.Safari()
-        # self.driver = webdriver.ChromiumEdge()
-        self.driver = webdriver.Edge()
-
-    # def test_server_is_up_and_running(self):
-    #     http = urllib3.PoolManager()
-    #     response = http.request("GET", self.get_server_url())
-    #     print(self.get_server_url())
-    #     self.assertEqual(response.status, 200)
-    # def test_request(self, live_server, flask_port):
-    #     response = server.app.get(f"http://localhost:{flask_port}")
-    #     assert response. == 200
-
-    def test_displaying_points_board(self, clubs_fixture, mocker):
-        self.driver = webdriver.Edge()
-        # ouvrir le client test
-        mocker.patch.object(server, "clubs", clubs_fixture["clubs"])
-
-        club = clubs_fixture["clubs"][0]
-        # club_email = club["email"]
-        club_email = "john@simplylift.co"
-        live_server()
+    def test_displaying_points_board(self, flask_port):
+        # chargement des données
+        club = clubs[0]
+        club_email = club["email"]
         # Ouvrir le navigateur avec le webdriver
-        driver = self.driver
+        driver = webdriver.Edge()
         # Identification
-        driver.get(f"http://localhost:4099")
+        driver.get(f"http://localhost:{flask_port}")
         email = driver.find_element(By.NAME, "email")
         email.clear()
         email.send_keys(club_email)
         email.send_keys(Keys.RETURN)
-        # Cliquer sur le bouton point_board
-        # assert "Summary | GUDLFT Registration" in driver.title
-        driver.find_element(By.ID, "button_board").click()
+        # Welcome
 
+        # Cliquer sur le bouton point_board
+        assert "Summary | GUDLFT Registration" in driver.title
+        driver.find_element(By.ID, "button_board").click()
+        # Affichage de la page board
         assert "Points board" in driver.title
+        # test des données affiché
+        print(f"capture d'écran sauvegardé : {driver.get_screenshot_as_file('Screenshots/board.png')}")
+        table_td = driver.find_elements(By.TAG_NAME, "td")
+        text_td = ""
+        for element in table_td:
+            text_td += element.text
+        for club in clubs:
+            assert club["name"] in text_td
+            print(f"{club['name']} est dans le tableau")
+
         driver.close()

@@ -1,19 +1,22 @@
 import pytest
 import server
+from server import app
 import socket
 import subprocess
-import os
 
 
-@pytest.fixture
-def client():
-    """this is the fixture that sets a client for the tests"""
-    server.app.testing = True
-    with server.app.test_client() as client:
-        yield client
+# import os
 
 
-@pytest.fixture
+# @pytest.fixture
+# def client():
+#     """this is the fixture that sets a client for the tests"""
+#     server.app.testing = True
+#     with server.app.test_client() as client:
+#         yield client
+
+
+@pytest.fixture(autouse=True)
 def clubs_fixture():
     """This is the fixture that sets a fake list of clubs for the tests."""
     clubs = {
@@ -26,21 +29,21 @@ def clubs_fixture():
     return clubs
 
 
-# @pytest.fixture(scope="session")
-# def flask_port():
-#     # Ask OS for a free port.
-#     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-#         s.bind(("", 0))
-#         addr = s.getsockname()
-#         port = addr[1]
-#         return 4099
+@pytest.fixture(scope="session")
+def flask_port():
+    ## Ask OS for a free port.
+    #
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(("", 0))
+        addr = s.getsockname()
+        port = addr[1]
+        return port
 
 
-@pytest.fixture(scope="session", autouse=True)
-def live_server():
-    # env = os.environ.copy()
-    # env["FLASK_APP"] = "server"
-    live_server = subprocess.Popen(['flask', '--app', 'server', 'run', '--port', str(4099)])
+#
+@pytest.fixture(autouse=True)
+def LiveServerTestCase(flask_port):
+    live_server = subprocess.Popen(['flask', '--app', 'server', 'run', '--port', str(flask_port)])
     try:
         yield live_server
     finally:

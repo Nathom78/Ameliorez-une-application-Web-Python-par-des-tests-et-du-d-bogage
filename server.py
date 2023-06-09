@@ -32,9 +32,6 @@ def index():
 @app.route("/showSummary", methods=["POST"])
 def showSummary():
     """This is the endpoint for the summary page of the app, where you can choose a competition to book places."""
-    print(clubs)
-    print(type(clubs))
-    print(request.form['email'])
     club = [club for club in clubs if club['email'] == request.form['email']][0]
     return render_template('welcome.html', club=club, competitions=competitions)
 
