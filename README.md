@@ -90,6 +90,7 @@ choisir vos tests en ajoutant directement le nom du fichier test ciblé, exemple
 - `pytest .\tests\tests unitaires\test_login.py`
 
 Pour les tests fonctionnels une capture d'écran est créé dans le repertoire _Screenshots_.
+Suivant le navigateur qui vous utilisé, vous devez dans le fichier de test fonctionnel changer le pilote web pour Sélénium
 
 #### Locust :
 
@@ -110,7 +111,13 @@ Un dossier `\report_locust` est créé, contenant des rapports des tests avant e
 #### Coverage :
 
 We also like to show how well we're testing, so there's a module called 
-    [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
+    [coverage](https://coverage.readthedocs.io/en/7.2.7/install.html) you should add to your project.
+
+Un rapport html, est créé dans le repertoire _/htmlcov_ avec la commande :
+`coverage html`
+
+ou avec les tests:
+`pytest --cov=. --cov-report html`
 
 ***
 ## *Conventions de nommage et de codes :*

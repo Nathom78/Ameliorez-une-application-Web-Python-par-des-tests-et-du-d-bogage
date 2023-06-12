@@ -17,18 +17,19 @@ class TestBoard:
         # chargement des données
         club = clubs[0]
         club_email = club["email"]
-        # Ouvrir le navigateur avec le webdriver
+        # Ouvrir le navigateur avec le webdriver approprié
+        # driver = webdriver.Chrome()
         driver = webdriver.Edge()
+
         # Identification
         driver.get(f"http://localhost:{flask_port}")
         email = driver.find_element(By.NAME, "email")
         email.clear()
         email.send_keys(club_email)
         email.send_keys(Keys.RETURN)
-        # Welcome
-
-        # Cliquer sur le bouton point_board
+        # page Welcome
         assert "Summary | GUDLFT Registration" in driver.title
+        # Cliquer sur le bouton point_board
         driver.find_element(By.ID, "button_board").click()
         # Affichage de la page board
         assert "Points board" in driver.title

@@ -1,13 +1,14 @@
 import pytest
-
-import server
+import socket
+import subprocess
+from server import app
 
 
 @pytest.fixture
 def client():
     """This is the fixture that sets a client for the tests."""
-    server.app.testing = True
-    with server.app.test_client() as client:
+    app.testing = True
+    with app.test_client() as client:
         yield client
 
 
@@ -44,7 +45,7 @@ def competitions_fixture():
 @pytest.fixture
 def past_competitions_fixture():
     """
-    this is the fixture that sets a fake list of future and past competitions for the tests
+    This is the fixture that sets a fake list of future and past competitions for the tests.
     """
     competitions = {
         "competitions": [
@@ -65,8 +66,7 @@ def past_competitions_fixture():
 
 @pytest.fixture(scope="session")
 def flask_port():
-    ## Ask OS for a free port.
-    #
+    # Ask OS for a free port.
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind(("", 0))
         addr = s.getsockname()
@@ -74,7 +74,6 @@ def flask_port():
         return port
 
 
-#
 @pytest.fixture(autouse=True)
 def LiveServerTestCase(flask_port):
     live_server = subprocess.Popen(['flask', '--app', 'server', 'run', '--port', str(flask_port)])
