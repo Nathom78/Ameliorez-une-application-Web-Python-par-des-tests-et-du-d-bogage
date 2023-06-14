@@ -23,4 +23,7 @@ class TestLogin:
         email = 'fake@fake.com'
         data = {'email': email}
         response = client.post('/showSummary', data=data)
+
         assert b"<li>unknown email, try again</li>" in response.data
+        assert response.status_code == 200
+

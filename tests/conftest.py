@@ -14,7 +14,9 @@ def client():
 
 @pytest.fixture
 def clubs_fixture():
-    """This is the fixture that sets a fake list of clubs for the tests."""
+    """
+    This is the fixture that sets a fake list of clubs for the tests.
+    """
     clubs = {
         "clubs": [
             {"name": "club_1", "email": "club_1@cluba.com", "points": 20},
@@ -27,6 +29,9 @@ def clubs_fixture():
 
 @pytest.fixture
 def competitions_fixture():
+    """
+    This is the fixture that sets a fake list of competition for the tests.
+    """
     competitions = {'competitions': [
         {
             "name": "Test compet A",
@@ -43,7 +48,7 @@ def competitions_fixture():
 
 
 @pytest.fixture
-def past_competitions_fixture():
+def times_competitions_fixture():
     """
     This is the fixture that sets a fake list of future and past competitions for the tests.
     """
@@ -63,7 +68,7 @@ def past_competitions_fixture():
     }
     return competitions
 
-
+# For Selenium, create a live server, because in windows os Flask-testing, not working with new python
 @pytest.fixture(scope="session")
 def flask_port():
     # Ask OS for a free port.

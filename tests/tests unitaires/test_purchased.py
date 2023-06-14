@@ -69,7 +69,6 @@ class TestPurchase:
         This test creates a client, trie to book more than 12 places
         and verifies the status_code, and error message.
         """
-
         mocker.patch.object(server, "clubs", clubs_fixture["clubs"])
         mocker.patch.object(server, "competitions", competitions_fixture["competitions"])
         club = clubs_fixture["clubs"][0]
@@ -90,7 +89,6 @@ class TestPurchase:
         This test creates a client, trie to book 12 places
         and verifies the status_code, and error message.
         """
-
         mocker.patch.object(server, "clubs", clubs_fixture["clubs"])
         mocker.patch.object(server, "competitions", competitions_fixture["competitions"])
         club = clubs_fixture["clubs"][0]
@@ -107,12 +105,11 @@ class TestPurchase:
         assert response.status_code == 200
 
     def test_book_less_12_places_should_return_no_error_message(self, client, clubs_fixture, competitions_fixture,
-                                                              mocker):
+                                                                mocker):
         """
             This test creates a client, trie to book less than 12 places
             and verifies the status_code, and error message.
         """
-
         mocker.patch.object(server, "clubs", clubs_fixture["clubs"])
         mocker.patch.object(server, "competitions", competitions_fixture["competitions"])
         club = clubs_fixture["clubs"][0]
@@ -128,16 +125,16 @@ class TestPurchase:
         assert b"Sorry, you cannot book more than 12 places." not in response.data
         assert response.status_code == 200
 
-    def test_book_past_competition_should_return_error_message(self, client, clubs_fixture, past_competitions_fixture,
+    def test_book_past_competition_should_return_error_message(self, client, clubs_fixture, times_competitions_fixture,
                                                                mocker):
         """
         This test creates a client, trie to book places to a past competition
         and verifies the status_code, and error message.
         """
-        mocker.patch.object(server, "competitions", past_competitions_fixture["competitions"])
+        mocker.patch.object(server, "competitions", times_competitions_fixture["competitions"])
         mocker.patch.object(server, "clubs", clubs_fixture["clubs"])
 
-        competition = [comp for comp in past_competitions_fixture["competitions"]
+        competition = [comp for comp in times_competitions_fixture["competitions"]
                        if comp["name"] == "Test past compet"][0]
         club = clubs_fixture["clubs"][0]
 
@@ -149,14 +146,14 @@ class TestPurchase:
         assert b"sorry, this competition already took place" in response.data
 
     def test_book_future_competition_should_not_return_error_message(self, client, clubs_fixture,
-                                                                     past_competitions_fixture, mocker):
+                                                                     times_competitions_fixture, mocker):
         """
         This test creates a client, trie to book places to a future competition
         and verifies the status_code.
         """
-        mocker.patch.object(server, "competitions", past_competitions_fixture["competitions"])
+        mocker.patch.object(server, "competitions", times_competitions_fixture["competitions"])
         mocker.patch.object(server, "clubs", clubs_fixture["clubs"])
-        competition = [comp for comp in past_competitions_fixture["competitions"]
+        competition = [comp for comp in times_competitions_fixture["competitions"]
                        if comp["name"] == "Test future compet"][0]
 
         club = clubs_fixture["clubs"][0]

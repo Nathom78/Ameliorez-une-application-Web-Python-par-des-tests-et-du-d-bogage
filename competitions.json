@@ -9,6 +9,11 @@
             "name": "Fall Classic",
             "date": "2020-10-22 13:30:00",
             "numberOfPlaces": "13"
+        },
+        {
+            "name": "Test New",
+            "date": "2024-06-18 13:30:00",
+            "numberOfPlaces": "12"
         }
     ]
 }

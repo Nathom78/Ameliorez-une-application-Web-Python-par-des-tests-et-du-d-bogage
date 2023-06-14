@@ -47,16 +47,17 @@ def book(competition, club):
     This is the enpoint for the page of the app where you can book a certain amount of places
     to the competition that you chose.
     """
-    foundClub = [c for c in clubs if c["name"] == club][0]
-    foundCompetition = [c for c in competitions if c["name"] == competition][0]
+    foundClub = [c for c in clubs if c["name"] == club]
+    foundCompetition = [c for c in competitions if c["name"] == competition]
+    print(foundCompetition)
     dateNow = datetime.now().replace(microsecond=0)
-    competitionDate = datetime.strptime(foundCompetition["date"], '%Y-%m-%d %H:%M:%S')
     if foundClub and foundCompetition:
+        competitionDate = datetime.strptime(foundCompetition[0]["date"], '%Y-%m-%d %H:%M:%S')
         if dateNow <= competitionDate:
-            return render_template("booking.html", club=foundClub, competition=foundCompetition)
+            return render_template("booking.html", club=foundClub[0], competition=foundCompetition[0])
         else:
             flash("sorry, this competition already took place")
-            return render_template('welcome.html', club=foundClub, competitions=competitions)
+            return render_template('welcome.html', club=foundClub[0], competitions=competitions)
     else:
         flash("Something went wrong-please try again")
         return render_template("welcome.html", club=club, competitions=competitions)
@@ -95,3 +96,4 @@ def board():
 def logout():
     """This endpoint is the logout of the application"""
     return redirect(url_for("index"))
+

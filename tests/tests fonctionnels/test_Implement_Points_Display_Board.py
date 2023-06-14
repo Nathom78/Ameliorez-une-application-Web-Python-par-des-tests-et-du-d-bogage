@@ -34,7 +34,7 @@ class TestBoard:
         # Affichage de la page board
         assert "Points board" in driver.title
         # test des données affiché
-        print(f"capture d'écran sauvegardé : {driver.get_screenshot_as_file('Screenshots/board.png')}")
+        print(f"capture d'écran sauvegardé : {driver.get_screenshot_as_file('Screenshots/Post_board.png')}")
         table_td = driver.find_elements(By.TAG_NAME, "td")
         text_td = ""
         for element in table_td:
@@ -42,5 +42,8 @@ class TestBoard:
         for club in clubs:
             assert club["name"] in text_td
             print(f"{club['name']} est dans le tableau")
-
+        # test bouton home
+        driver.find_element(By.ID, "button_id").click()
+        url_home = driver.current_url
+        assert url_home == f"http://localhost:{flask_port}/?"
         driver.close()
