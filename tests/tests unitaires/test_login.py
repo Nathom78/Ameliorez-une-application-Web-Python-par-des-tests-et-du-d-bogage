@@ -26,4 +26,3 @@ class TestLogin:
 
         assert b"<li>unknown email, try again</li>" in response.data
         assert response.status_code == 200
-

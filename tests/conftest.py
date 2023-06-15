@@ -1,7 +1,7 @@
 import pytest
 import socket
 import subprocess
-from server import app, competitions
+from server import app
 
 
 @pytest.fixture

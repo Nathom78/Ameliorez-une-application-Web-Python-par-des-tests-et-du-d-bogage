@@ -96,4 +96,3 @@ def board():
 def logout():
     """This endpoint is the logout of the application"""
     return redirect(url_for("index"))
-
