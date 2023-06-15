@@ -1,7 +1,9 @@
 # Améliorez une application Web Python par des tests et du débogage
 
 [**Projet 11** du parcours OpenClassrooms Développeur d'application en Python](https://openclassrooms.com/fr/paths/518/projects/839/assignment)
-
+[![Tests Status](./reports/junit/tests-badge.svg?dummy=8484744)](./reports/junit/report.html)
+[![Coverage Status](./reports/coverage/coverage-badge.svg?dummy=8484744)](reports/coverage/index.html)
+[![Flake8 Status](./reports/flake8/flake8-badge.svg?dummy=8484744)](reports/flake8/index.html)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 
 ## *Technologies*
@@ -89,12 +91,12 @@ Cette commande exécutera tous les tests qui se trouvent dans le répertoire tes
 choisir vos tests en ajoutant directement le nom du fichier test ciblé, exemple :
 - `pytest .\tests\tests unitaires\test_login.py`
 
-Pour les tests fonctionnels une capture d'écran est créé dans le repertoire _statics_.
+Pour les tests fonctionnels une capture d'écran est créé dans le repertoire _static_.
 Suivant le navigateur que vous utilisez, vous devez dans le fichier de test fonctionnel changer le pilote web pour Sélénium
 
 #### Locust :
 
-Concernant Locust, vous pouvez consulter les rapports générés avant et après, dans le dossier **report_locust**, 
+Concernant Locust, vous pouvez consulter les rapports générés avant et après, dans le dossier **reports/locust**, 
 il s'ouvre dans un navigateur.
 
 Cependant, si vous voulez lancer vous-même le test locust, entrez commandes suivantes dans votre terminal :
@@ -115,7 +117,7 @@ PS: Le serveur doit être lancé en parallel, à utiliser comme Host.
 Nous aimons montrer à quel point, nous testons bien, il y a donc un module appelé
     [coverage](https://coverage.readthedocs.io/en/7.2.7/install.html)
 
-Un rapport html, est créé dans le repertoire _/htmlcov_ avec la commande :
+Un rapport html, est créé dans le repertoire _/reports/coverage_ avec la commande :
 `coverage html`
 
 ou avec les tests:
