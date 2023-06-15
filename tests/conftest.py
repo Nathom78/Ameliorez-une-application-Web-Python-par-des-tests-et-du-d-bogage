@@ -1,7 +1,7 @@
 import pytest
 import socket
 import subprocess
-from server import app
+from server import app, competitions
 
 
 @pytest.fixture
@@ -68,6 +68,7 @@ def times_competitions_fixture():
     }
     return competitions
 
+
 # For Selenium, create a live server, because in windows os Flask-testing, not working with new python
 @pytest.fixture(scope="session")
 def flask_port():
@@ -79,7 +80,7 @@ def flask_port():
         return port
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="session", autouse=True)
 def LiveServerTestCase(flask_port):
     live_server = subprocess.Popen(['flask', '--app', 'server', 'run', '--port', str(flask_port)])
     try:

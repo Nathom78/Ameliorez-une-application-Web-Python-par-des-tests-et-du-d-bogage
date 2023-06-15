@@ -89,8 +89,8 @@ Cette commande exécutera tous les tests qui se trouvent dans le répertoire tes
 choisir vos tests en ajoutant directement le nom du fichier test ciblé, exemple :
 - `pytest .\tests\tests unitaires\test_login.py`
 
-Pour les tests fonctionnels une capture d'écran est créé dans le repertoire _Screenshots_.
-Suivant le navigateur qui vous utilisé, vous devez dans le fichier de test fonctionnel changer le pilote web pour Sélénium
+Pour les tests fonctionnels une capture d'écran est créé dans le repertoire _statics_.
+Suivant le navigateur que vous utilisez, vous devez dans le fichier de test fonctionnel changer le pilote web pour Sélénium
 
 #### Locust :
 
