@@ -3,6 +3,10 @@ from locust import HttpUser, task
 
 class ProjectPerfTest(HttpUser):
     @task
+    def board(self):
+        response = self.client.get('/board')
+
+    @task
     def index(self):
         response = self.client.get('/')
 
@@ -13,8 +17,7 @@ class ProjectPerfTest(HttpUser):
 
     @task
     def book(self):
-        response = self.client.get(
-            '/book/Spring Festival/Iron Temple')
+        response = self.client.get('/book/Spring Festival/Iron Temple')
 
     @task
     def purchase(self):

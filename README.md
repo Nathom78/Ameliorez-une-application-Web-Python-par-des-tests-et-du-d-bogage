@@ -94,7 +94,7 @@ Suivant le navigateur que vous utilisez, vous devez dans le fichier de test fonc
 
 #### Locust :
 
-Concernant Locust, vous pouvez consulter le rapport généré dans le dossier **locust_report**, 
+Concernant Locust, vous pouvez consulter les rapports générés avant et après, dans le dossier **report_locust**, 
 il s'ouvre dans un navigateur.
 
 Cependant, si vous voulez lancer vous-même le test locust, entrez commandes suivantes dans votre terminal :
@@ -104,14 +104,16 @@ Cependant, si vous voulez lancer vous-même le test locust, entrez commandes sui
 Vous aurez alors l'Url suivante générée : 
  - http://localhost:4099/
 
-Un dossier `\report_locust` est créé, contenant des rapports des tests avant et aprés les améliorations, 
+Les tests sont avec 6 utilisateurs.
+PS: Le serveur doit être lancé en parallel, à utiliser comme Host.
+
 
 
 
 #### Coverage :
 
-We also like to show how well we're testing, so there's a module called 
-    [coverage](https://coverage.readthedocs.io/en/7.2.7/install.html) you should add to your project.
+Nous aimons montrer à quel point, nous testons bien, il y a donc un module appelé
+    [coverage](https://coverage.readthedocs.io/en/7.2.7/install.html)
 
 Un rapport html, est créé dans le repertoire _/htmlcov_ avec la commande :
 `coverage html`
