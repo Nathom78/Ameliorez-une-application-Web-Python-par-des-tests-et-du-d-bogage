@@ -128,4 +128,4 @@ ou avec les tests:
 ## *Conventions de nommage et de codes :*
 
 **PEP 8** – Style Guide for Python Code <a href="https://peps.python.org/pep-0008/">ici</a>.</br>
-Un rapport flake8 au format HTML est disponible dans le repertoire `\flake-report`, à la racine du projet.
+Un rapport flake8 au format HTML est disponible dans le repertoire `\reports\flake8`, à la racine du projet.
